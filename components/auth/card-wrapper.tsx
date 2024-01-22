@@ -7,6 +7,7 @@ import {
 import { HeaderCard } from "./header-card";
 import { BackButton } from "./back-button";
 import { Social } from "./social";
+import { LogoBanner } from "../logo-banner";
 
 interface CardWrapperProps {
   headerTitle: string;
@@ -30,6 +31,7 @@ export const CardWrapper = ({
   return (
     <Card className="w-[400px]">
       <CardHeader>
+        <LogoBanner />
         <HeaderCard
           title={headerTitle}
           subtitle={headerSubtitle}
