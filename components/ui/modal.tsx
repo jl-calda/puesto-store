@@ -31,7 +31,7 @@ export const Modal = ({ children }: ModalProps) => {
       defaultOpen
       onOpenChange={() => router.back()}
     >
-      <DialogContent>{children}</DialogContent>
+      <DialogContent asChild>{children}</DialogContent>
     </Dialog>
   );
 };

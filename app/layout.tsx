@@ -18,7 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className)}>{children}</body>
+      <body
+        className={cn(
+          inter.className,
+          "bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-red-100 to-orange-50"
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }

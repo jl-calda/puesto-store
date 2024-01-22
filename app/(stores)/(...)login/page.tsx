@@ -5,7 +5,7 @@ const LoginModalPage = () => {
   return (
     <div className="flex-1">
       <Modal>
-        <LoginForm />;
+        <LoginForm />
       </Modal>
     </div>
   );
