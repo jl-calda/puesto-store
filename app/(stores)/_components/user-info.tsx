@@ -29,7 +29,12 @@ const ButtonLink = ({ href, children }: ButtonLinkProps) => {
       className="w-full justify-start"
       asChild
     >
-      <Link href={href}>{children}</Link>
+      <Link
+        href={href}
+        className="cursor-pointer"
+      >
+        {children}
+      </Link>
     </Button>
   );
 };
@@ -50,7 +55,7 @@ export const UserInfo = () => {
         className="w-[200px]"
         align="end"
       >
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <ButtonLink href="/login">
             <LogIn className="w-4 h-4 mr-4" />
             Login
@@ -58,7 +63,7 @@ export const UserInfo = () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Learn more</DropdownMenuLabel>
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <ButtonLink href="/about">
             <Info className="w-4 h-4 mr-4" />
             About Puesto

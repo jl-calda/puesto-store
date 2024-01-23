@@ -1,37 +1,20 @@
-"use client";
-
-import { useState } from "react";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogClose,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "./button";
-
-import { useRouter } from "next/navigation";
-import { on } from "events";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface ModalProps {
   children: React.ReactNode;
+  onClose?: () => void;
 }
 
-export const Modal = ({ children }: ModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const router = useRouter();
-
+export const Modal = ({ children, onClose }: ModalProps) => {
   return (
     <Dialog
-      modal
       defaultOpen
-      onOpenChange={() => router.back()}
+      modal
+      onOpenChange={onClose}
     >
-      <DialogContent asChild>{children}</DialogContent>
+      <DialogContent className="p-0 border-none w-auto overflow-hidden rounded-xl">
+        {children}
+      </DialogContent>
     </Dialog>
   );
 };

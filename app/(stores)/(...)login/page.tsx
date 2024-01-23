@@ -1,14 +1,8 @@
 import { LoginForm } from "@/components/auth/login-form";
-import { Modal } from "@/components/ui/modal";
+import { LoginModal } from "@/components/modals/login-modal";
 
 const LoginModalPage = () => {
-  return (
-    <div className="flex-1">
-      <Modal>
-        <LoginForm />
-      </Modal>
-    </div>
-  );
+  return <LoginModal />;
 };
 
 export default LoginModalPage;

@@ -14,7 +14,12 @@ export const ButtonTooltip = ({ label, children }: ButtonTooltipProps) => {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger
+          asChild
+          autoFocus={false}
+        >
+          {children}
+        </TooltipTrigger>
         <TooltipContent>
           <p>{label}</p>
         </TooltipContent>

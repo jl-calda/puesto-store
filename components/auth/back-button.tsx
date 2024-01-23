@@ -15,7 +15,7 @@ export const BackButton = ({ label, href }: BackButtonProps) => {
     >
       <Link
         href={href}
-        className="text-muted-foreground text-sm"
+        className="text-muted-foreground text-xs"
       >
         {label}
       </Link>

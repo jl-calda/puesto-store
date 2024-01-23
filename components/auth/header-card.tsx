@@ -1,5 +1,3 @@
-import { Logo } from "../logo";
-
 interface CardHeaderProps {
   title: string;
   subtitle?: string;
