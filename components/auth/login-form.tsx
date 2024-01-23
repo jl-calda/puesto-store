@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 import { LoginSchema } from "@/schema/auth-schema";
 
@@ -27,6 +27,8 @@ interface LoginFormProps {
 }
 
 export const LoginForm = ({ modal }: LoginFormProps) => {
+  const [error, setError] = useState<string | undefined>();
+  const [success, setSuccess] = useState<string | undefined>();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -39,13 +41,14 @@ export const LoginForm = ({ modal }: LoginFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      login(values);
-
-      if (!modal) {
-        router.push("/");
-      } else {
-        router.back();
-      }
+      login(values).then((data) => {
+        if (data.success) {
+          setSuccess(data.success);
+        }
+        if (data.error) {
+          setError(data.error);
+        }
+      });
     });
   };
 

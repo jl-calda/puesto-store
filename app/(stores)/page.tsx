@@ -1,7 +1,9 @@
+import { auth } from "@/auth";
 import React from "react";
 
-const StoresPage = () => {
-  return <div className="h-full">StoresPage</div>;
+const StoresPage = async () => {
+  const user = await auth();
+  return <div className="h-full">{JSON.stringify(user)}</div>;
 };
 
 export default StoresPage;
