@@ -1,5 +1,5 @@
 import { NextAuthConfig } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Facebook from "next-auth/providers/facebook";
 import bcrypt from "bcryptjs";
@@ -17,34 +17,23 @@ export default {
       clientId: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "youremail@provider.com",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "******",
-        },
-      },
-      async authorize(credentials, req) {
+    Credentials({
+      async authorize(credentials) {
+        console.log(credentials);
         const validatedFields = LoginSchema.safeParse(credentials);
+
         if (validatedFields.success) {
           const { email, password } = validatedFields.data;
 
           const user = await getUserByEmail(email);
+
+          console.log(user);
 
           if (!user || !user.password) return null;
 
           const isPasswordMatch = await bcrypt.compare(password, user.password);
 
           if (isPasswordMatch) return user;
-
-          return null;
         }
 
         return null;

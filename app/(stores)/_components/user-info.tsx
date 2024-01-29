@@ -1,21 +1,18 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { currentUser } from "@/lib/auth";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../../../components/ui/button";
 import Link from "next/link";
-import { Info, LogIn } from "lucide-react";
+import { Info, LogIn, UserIcon, LogOut, Store } from "lucide-react";
+import { LogoutButton } from "@/components/auth/logout-button";
+import { UserAvatar } from "@/components/user-avatar";
 
 interface ButtonLinkProps {
   href: string;
@@ -39,28 +36,53 @@ const ButtonLink = ({ href, children }: ButtonLinkProps) => {
   );
 };
 
-export const UserInfo = () => {
+export const UserInfo = async () => {
+  const user = await currentUser();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage
-            src=""
-            alt="User avatar"
-          />
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
+        <UserAvatar user={user} />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-[200px]"
         align="end"
       >
-        <DropdownMenuItem asChild>
-          <ButtonLink href="/login">
-            <LogIn className="w-4 h-4 mr-4" />
-            Login
-          </ButtonLink>
-        </DropdownMenuItem>
+        <DropdownMenuLabel>
+          {user ? "Manage your Puesto" : "You are signed out"}
+        </DropdownMenuLabel>
+        {user ? (
+          <>
+            <DropdownMenuItem asChild>
+              <ButtonLink href="/account">
+                <UserIcon className="w-4 h-4 mr-4" />
+                Account
+              </ButtonLink>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <ButtonLink href="/account">
+                <Store className="w-4 h-4 mr-4" />
+                Stores
+              </ButtonLink>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <LogoutButton>
+                <LogOut className="w-4 h-4 mr-4" />
+                Logout
+              </LogoutButton>
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <>
+            <DropdownMenuItem asChild>
+              <ButtonLink href="/login">
+                <LogIn className="w-4 h-4 mr-4" />
+                Login
+              </ButtonLink>
+            </DropdownMenuItem>
+          </>
+        )}
+
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Learn more</DropdownMenuLabel>
         <DropdownMenuItem asChild>

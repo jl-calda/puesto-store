@@ -7,7 +7,6 @@ import bcrypt from "bcryptjs";
 import { SignupSchema } from "@/schema/auth-schema";
 
 export const signup = async (data: z.infer<typeof SignupSchema>) => {
-  console.log("running signup");
   const validatedFields = SignupSchema.safeParse(data);
 
   if (!validatedFields.success) {

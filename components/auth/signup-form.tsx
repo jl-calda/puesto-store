@@ -71,75 +71,77 @@ export const SignUpForm = ({ modal }: SignUpFormProps) => {
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-y-4">
-            <FormField
-              name="name"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex flex-row items-center justify-between">
-                    <FormLabel>Name</FormLabel>
-                    <FormMessage />
-                  </div>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={pending}
-                      placeholder="Juan Dela Cruz"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="email"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex flex-row items-center justify-between">
-                    <FormLabel>Email</FormLabel>
-                    <FormMessage />
-                  </div>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={pending}
-                      placeholder="yourname@provider.com"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="password"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex flex-row items-center justify-between">
-                    <FormLabel>Password</FormLabel>
-                    <FormMessage />
-                  </div>
-                  <FormControl>
-                    <InputPassword field={field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="confirmPassword"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex flex-row items-center justify-between">
-                    <FormLabel>Confirm Password</FormLabel>
-                    <FormMessage />
-                  </div>
-                  <FormControl>
-                    <InputPassword field={field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+          <div className="flex flex-col gap-y-6">
+            <div className="flex flex-col gap-y-4">
+              <FormField
+                name="name"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex flex-row items-center justify-between">
+                      <FormLabel>Name</FormLabel>
+                      <FormMessage className="text-xs" />
+                    </div>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={pending}
+                        placeholder="Juan Dela Cruz"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="email"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex flex-row items-center justify-between">
+                      <FormLabel>Email</FormLabel>
+                      <FormMessage className="text-xs" />
+                    </div>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={pending}
+                        placeholder="yourname@provider.com"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="password"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex flex-row items-center justify-between">
+                      <FormLabel>Password</FormLabel>
+                      <FormMessage className="text-xs" />
+                    </div>
+                    <FormControl>
+                      <InputPassword field={field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="confirmPassword"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex flex-row items-center justify-between">
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormMessage className="text-xs" />
+                    </div>
+                    <FormControl>
+                      <InputPassword field={field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
             <Button type="submit">Submit</Button>
             {error && <FormError message={error} />}
             {success && <FormSuccess message={success} />}
